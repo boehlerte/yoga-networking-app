@@ -1,0 +1,21 @@
+.social-card {
+    &__container {
+        width: 100%;
+    }
+    &__profile-photo {
+        object-fit: cover;
+        width: 100%;
+    }
+}
+
+.thumbnail-photo {
+    height: 1em;
+}
+
+.card-bio {
+    color: rgb(59, 58, 58);
+}
+
+#showBio.card-body {
+    max-height: 275px;
+}

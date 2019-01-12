@@ -1,27 +1,42 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+//import logo from './logo.svg';
+import './App.scss';
+import { MemberBoard } from './components/MemberBoard';
+import Axios from 'axios';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+        members: [],
+        isLoading: true
+    };
+  }
+
+  componentDidMount() {
+    Axios.get('http://localhost:8080/src/api/memberData.json')
+    .then(res => {
+        console.log(res);
+        this.setState({members: res.data.members, isLoading: false});
+    });
+  }
+
   render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+    const { members, isLoading } = this.state;
+    if (isLoading) {
+      return <div>App is loading...</div>
+    } else {
+      return (
+        <div className="App">
+          <header className="App-header">
+            <h4>Yogi Network</h4>
+          </header>
+          <div className="Members">
+            <MemberBoard members={members}/>
+          </div>
+        </div>
+      );
+    }
   }
 }
 

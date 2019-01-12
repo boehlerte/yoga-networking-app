@@ -1,0 +1,94 @@
+{
+    "members": [
+        {
+            "name": "Erin",
+            "photo": "yogi1.jpeg",
+            "location": "Denver, CO",
+            "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce tempus pellentesque diam, id tincidunt est euismod nec. Donec ullamcorper, libero id laoreet tempus, metus nisi iaculis augue, ut mollis turpis odio placerat enim. Etiam aliquam."
+        },
+        {
+        "name": "Jessica",
+            "photo": "yogi2.jpeg",
+            "location": "London, UK",
+            "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce tempus pellentesque diam, id tincidunt est euismod nec. Donec ullamcorper, libero id laoreet tempus, metus nisi iaculis augue, ut mollis turpis odio placerat enim. Etiam aliquam."
+        },
+        {
+            "name": "Morgan",
+            "photo": "yogi3.jpeg",
+            "location": "Louisville, KY",
+            "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce tempus pellentesque diam, id tincidunt est euismod nec. Donec ullamcorper, libero id laoreet tempus, metus nisi iaculis augue, ut mollis turpis odio placerat enim. Etiam aliquam."
+        },
+        {
+            "name": "Chloe",
+            "photo": "yogi4.jpeg",
+            "location": "Tokyo, Japan",
+            "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce tempus pellentesque diam, id tincidunt est euismod nec. Donec ullamcorper, libero id laoreet tempus, metus nisi iaculis augue, ut mollis turpis odio placerat enim. Etiam aliquam."
+        },
+        {
+            "name": "Lauren",
+            "photo": "yogi5.jpeg",
+            "location": "Singapore, Singapore",
+            "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce tempus pellentesque diam, id tincidunt est euismod nec. Donec ullamcorper, libero id laoreet tempus, metus nisi iaculis augue, ut mollis turpis odio placerat enim. Etiam aliquam."
+        },
+        {
+            "name": "Kelly",
+            "photo": "yogi6.jpeg",
+            "location": "Austin, TX",
+            "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce tempus pellentesque diam, id tincidunt est euismod nec. Donec ullamcorper, libero id laoreet tempus, metus nisi iaculis augue, ut mollis turpis odio placerat enim. Etiam aliquam."
+        },
+        {
+            "name": "Megan",
+            "photo": "yogi7.jpeg",
+            "location": "Paris, France",
+            "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce tempus pellentesque diam, id tincidunt est euismod nec. Donec ullamcorper, libero id laoreet tempus, metus nisi iaculis augue, ut mollis turpis odio placerat enim. Etiam aliquam."
+        },
+        {
+            "name": "Siobhan",
+            "photo": "yogi8.jpeg",
+            "location": "Dublin, Ireland",
+            "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce tempus pellentesque diam, id tincidunt est euismod nec. Donec ullamcorper, libero id laoreet tempus, metus nisi iaculis augue, ut mollis turpis odio placerat enim. Etiam aliquam."
+        },
+        {
+            "name": "Sami",
+            "photo": "yogi9.jpeg",
+            "location": "Los Angeles, CA",
+            "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce tempus pellentesque diam, id tincidunt est euismod nec. Donec ullamcorper, libero id laoreet tempus, metus nisi iaculis augue, ut mollis turpis odio placerat enim. Etiam aliquam."
+        },
+        {
+            "name": "Kaija",
+            "photo": "yogi10.jpeg",
+            "location": "Portland, OR",
+            "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce tempus pellentesque diam, id tincidunt est euismod nec. Donec ullamcorper, libero id laoreet tempus, metus nisi iaculis augue, ut mollis turpis odio placerat enim. Etiam aliquam."
+        },
+        {
+            "name": "Kara",
+            "photo": "yogi11.jpeg",
+            "location": "Touluse, France",
+            "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce tempus pellentesque diam, id tincidunt est euismod nec. Donec ullamcorper, libero id laoreet tempus, metus nisi iaculis augue, ut mollis turpis odio placerat enim. Etiam aliquam."
+        },
+        {
+            "name": "Araya",
+            "photo": "yogi12.jpeg",
+            "location": "Bangkok, Thailand",
+            "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce tempus pellentesque diam, id tincidunt est euismod nec. Donec ullamcorper, libero id laoreet tempus, metus nisi iaculis augue, ut mollis turpis odio placerat enim. Etiam aliquam."
+        },
+        {
+            "name": "Sara",
+            "photo": "yogi13.jpeg",
+            "location": "Jerusalem, Israel",
+            "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce tempus pellentesque diam, id tincidunt est euismod nec. Donec ullamcorper, libero id laoreet tempus, metus nisi iaculis augue, ut mollis turpis odio placerat enim. Etiam aliquam."
+        },
+        {
+            "name": "Allie",
+            "photo": "yogi14.jpeg",
+            "location": "Dubai, UAE",
+            "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce tempus pellentesque diam, id tincidunt est euismod nec. Donec ullamcorper, libero id laoreet tempus, metus nisi iaculis augue, ut mollis turpis odio placerat enim. Etiam aliquam."
+        },
+        {
+            "name": "Carmen",
+            "photo": "yogi15.jpeg",
+            "location": "Boston, MA",
+            "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce tempus pellentesque diam, id tincidunt est euismod nec. Donec ullamcorper, libero id laoreet tempus, metus nisi iaculis augue, ut mollis turpis odio placerat enim. Etiam aliquam."
+        }
+    ]
+}
