@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './MemberCard.scss';
-import { Button, Collapse, Card, CardBody } from 'reactstrap';
+import { Button, Collapse } from 'reactstrap';
 import Transition from 'react-transition-group/Transition';
 
 export class MemberCard extends Component {
@@ -8,7 +8,7 @@ export class MemberCard extends Component {
         super(props);
         this.toggle = this.toggle.bind(this);
         this.state = {
-            collapse: false,
+            collapsed: false,
             name: props.data.name,
             photo: props.data.photo,
             location: props.data.location,
@@ -17,7 +17,7 @@ export class MemberCard extends Component {
     }
 
     toggle() {
-        this.setState({collapse: !this.state.collapse });
+        this.setState({collapsed: !this.state.collapsed });
     }
 
     render() {
@@ -35,7 +35,7 @@ export class MemberCard extends Component {
         };
 
         var bioButtonText;
-        if (!this.state.collapse) {
+        if (!this.state.collapsed) {
             bioButtonText = 'View Bio';
         } else {
             bioButtonText = 'Hide Bio';
@@ -47,20 +47,18 @@ export class MemberCard extends Component {
                 <div className="card-body">
                     <h5 className="card-name">{this.state.name}</h5>
                     <p className="card-location">
-                        <img src={require('../assets/location_pin.png')} alt="pin" className="thumbnail-photo"/>
+                        <img src={require('../assets/location_pin.png')} alt="pin" className="thumbnail-sm"/>
                         {this.state.location}
                     </p>
                     <div className="card-bio">
                         <Button color="primary" onClick={this.toggle}>{bioButtonText}</Button>
-                        <Transition in={this.state.collapse} timeout={0}>
+                        <Transition in={this.state.collapsed} timeout={0}>
                             {(state) => (
                                 <div style={{...defaultStyle, ...transitionStyles[state]}}>
-                                    <Collapse isOpen={this.state.collapse} className="collapse" id="showBio">
-                                        <Card style={{marginTop: "1em"}}>
-                                            <CardBody>
-                                                {this.state.bio}    
-                                            </CardBody>
-                                        </Card>
+                                    <Collapse isOpen={this.state.collapsed} className="collapse" id="showBio">
+                                        <div style={{marginTop: '1em'}}>
+                                            {this.state.bio}
+                                        </div>
                                     </Collapse>
                                 </div>
                             )}
