@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import './App.scss';
 import { MemberBoard } from './components/MemberBoard';
 import Axios from 'axios';
+import { NavComponent } from './components/NavComponent';
 
 class App extends Component {
   constructor(props) {
@@ -28,6 +29,9 @@ class App extends Component {
     } else {
       return (
         <div className="App">
+          <nav className="App-navigation">
+            <NavComponent />
+          </nav>
           <header className="App-header">
             <h4>Yogi Network</h4>
           </header>
