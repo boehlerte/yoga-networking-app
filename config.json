@@ -1,0 +1,7 @@
+{
+    "secret": "secret-token-goes-here",
+    "refreshTokenSecret": "secret-token-goes-here",
+    "port": 3001,
+    "tokenLife": 900,
+    "refreshTokenLife": 86400
+}

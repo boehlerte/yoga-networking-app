@@ -16,7 +16,7 @@ export class MemberBoard extends Component {
             return <MemberCard key={member.name} data={member}></MemberCard>
         });
         return (
-            <div className="member-board__container card-columns container">
+            <div className="member-board__container card-columns container-fluid">
                 {membersList}
             </div>
         );

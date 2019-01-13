@@ -27,7 +27,7 @@
         {
             "name": "Lauren",
             "photo": "yogi5.jpeg",
-            "location": "Singapore, Singapore",
+            "location": "Singapore",
             "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce tempus pellentesque diam, id tincidunt est euismod nec. Donec ullamcorper, libero id laoreet tempus, metus nisi iaculis augue, ut mollis turpis odio placerat enim. Etiam aliquam."
         },
         {
@@ -63,7 +63,7 @@
         {
             "name": "Kara",
             "photo": "yogi11.jpeg",
-            "location": "Touluse, France",
+            "location": "Toulouse, France",
             "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce tempus pellentesque diam, id tincidunt est euismod nec. Donec ullamcorper, libero id laoreet tempus, metus nisi iaculis augue, ut mollis turpis odio placerat enim. Etiam aliquam."
         },
         {

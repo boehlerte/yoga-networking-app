@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import './MemberCard.scss';
-import { Button, Collapse, Card, CardBody } from 'reactstrap';
-import Transition from 'react-transition-group/Transition';
+import ReactCardFlip from 'react-card-flip';
+import { Button } from 'reactstrap';
 
 export class MemberCard extends Component {
     constructor(props) {
         super(props);
-        this.toggle = this.toggle.bind(this);
+        this.handleClick = this.handleClick.bind(this);
         this.state = {
-            collapse: false,
+            isFlipped: false,
             name: props.data.name,
             photo: props.data.photo,
             location: props.data.location,
@@ -16,59 +16,34 @@ export class MemberCard extends Component {
         }
     }
 
-    toggle() {
-        this.setState({collapse: !this.state.collapse });
+    handleClick(e) {
+        e.preventDefault();
+        this.setState(prevState => ({ isFlipped: !prevState.isFlipped }));
     }
 
     render() {
-        const duration = 500;
-        const defaultStyle = {
-            transition: `all ${duration}ms`,
-            overflow: `hidden`,
-            height: `0`,
-            padding: `0`,
-        }
-
-        const transitionStyles = {
-            entered: { height: `275px`},
-            exited: { height: `0`}
-        };
-
-        var bioButtonText;
-        if (!this.state.collapse) {
-            bioButtonText = 'View Bio';
-        } else {
-            bioButtonText = 'Hide Bio';
-        }
-
         return (
             <div className="social-card__container card">
-                <img className="social-card__profile-photo" src={require('../assets/'+this.state.photo)} alt="profile"/>
-                <div className="card-body">
-                    <h5 className="card-name">{this.state.name}</h5>
-                    <p className="card-location">
-                        <img src={require('../assets/location_pin.png')} alt="pin" className="thumbnail-photo"/>
-                        {this.state.location}
-                    </p>
-                    <div className="card-bio">
-                        <Button color="primary" onClick={this.toggle}>{bioButtonText}</Button>
-                        <Transition in={this.state.collapse} timeout={0}>
-                            {(state) => (
-                                <div style={{...defaultStyle, ...transitionStyles[state]}}>
-                                    <Collapse isOpen={this.state.collapse} className="collapse" id="showBio">
-                                        <Card style={{marginTop: "1em"}}>
-                                            <CardBody>
-                                                {this.state.bio}    
-                                            </CardBody>
-                                        </Card>
-                                    </Collapse>
-                                </div>
-                            )}
-                            
-                        </Transition>
+                <ReactCardFlip isFlipped={this.state.isFlipped}>
+                <div key="front" className="member-card__front">
+                    <img className="social-card__profile-photo" src={require('../assets/'+this.state.photo)} alt="profile"/>
+                    <div className="card-body">
+                        <h5 className="card-name">{this.state.name}</h5>
+                        <p className="card-location">
+                            <img src={require('../assets/location_pin.png')} alt="pin" className="thumbnail-sm"/>
+                            {this.state.location}
+                        </p>
+                        <Button onClick={this.handleClick}>See Bio</Button>
                     </div>
                 </div>
                 
+                <div key="back" className="member-card__back">
+                    <div className="card-body">
+                        <p>{this.state.bio}</p>
+                    </div>
+                    <Button onClick={this.handleClick}>Go Back</Button>
+                </div>
+                </ReactCardFlip>
             </div>
         );
     }
