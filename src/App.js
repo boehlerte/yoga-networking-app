@@ -15,7 +15,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    Axios.get('http://localhost:8080/src/api/memberData.json')
+    Axios.get('/api/members')
     .then(res => {
         console.log(res);
         this.setState({members: res.data.members, isLoading: false});
