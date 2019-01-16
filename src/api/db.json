@@ -2,15 +2,15 @@
     "users": [
         {
             "username": "eringrace",
-            "password": "TestPassword"
+            "password": "$2a$10$OezSKxaSPZLcrbNBfhdhdeCCev/LQh1drwR0uWY17InE9jpuWLmwi"
         },
         {
             "username": "jess123",
-            "password": "TestPassword"
+            "password": "$2a$10$OezSKxaSPZLcrbNBfhdhdeCCev/LQh1drwR0uWY17InE9jpuWLmwi"
         },
         {
             "username": "morganyogi",
-            "password": "TestPassword"
+            "password": "$2a$10$OezSKxaSPZLcrbNBfhdhdeCCev/LQh1drwR0uWY17InE9jpuWLmwi"
         }
     ]
 }
