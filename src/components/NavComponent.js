@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink} from 'reactstrap';
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 import './NavComponent.scss';
-import LoginComponent from './LoginComponent';
+import LoginControl from './LoginControl';
 
 export class NavComponent extends Component {
     constructor(props) {
@@ -10,10 +10,12 @@ export class NavComponent extends Component {
         
         this.toggleNavbar = this.toggleNavbar.bind(this);
         this.toggleLoginModal = this.toggleLoginModal.bind(this);
+        this.onLogin = this.onLogin.bind(this);
 
         this.state = {
             collapsed: true,
-            showModal: false
+            showModal: false,
+            isLoggedIn: false
         }
     }
 
@@ -29,7 +31,18 @@ export class NavComponent extends Component {
         });
     }
 
+    onLogin(isSuccess) {
+        this.setState({ 
+            isLoggedIn: isSuccess,
+            showModal: !isSuccess
+        });
+    }
+
     render() {
+        var loginLogoutText = 'Login';
+        if (this.state.isLoggedIn) {
+            loginLogoutText = 'Logout';
+        } 
         return (
             <div>
                 <Navbar color="faded" light>
@@ -41,16 +54,16 @@ export class NavComponent extends Component {
                 <Collapse isOpen={!this.state.collapsed} navbar>
                     <Nav navbar>
                     <NavItem>
-                        <NavLink href="#" onClick={this.toggleLoginModal}>Login</NavLink>
+                        <NavLink href="#" onClick={this.toggleLoginModal}>{loginLogoutText}</NavLink>
                         <Modal isOpen={this.state.showModal} toggle={this.toggleLoginModal}>
-                            <ModalHeader toggle={this.toggleLoginModal}>Login</ModalHeader>
+                            <ModalHeader toggle={this.toggleLoginModal}>Logout</ModalHeader>
                             <ModalBody>
-                                <LoginComponent/>
+                                {this.state.showModal && <LoginControl isLoggedIn={this.state.isLoggedIn} onLogin={this.onLogin}/>}
                             </ModalBody>
                         </Modal>
                     </NavItem>
                     <NavItem>
-                        <NavLink href="#">Other Link</NavLink>
+                        <NavLink href="#">My Profile</NavLink>
                     </NavItem>
                     </Nav>
                 </Collapse>
