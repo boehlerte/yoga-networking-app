@@ -3,7 +3,7 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import Axios from 'axios';
 import './LoginForm.scss';
 
-export default class LoginForms extends Component {
+export default class LoginForm extends Component {
     constructor(props) {
         super(props);
 
