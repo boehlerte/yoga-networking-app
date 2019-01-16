@@ -41,7 +41,7 @@ export default class LoginForm extends Component {
             // test that user can now access secure url
             localStorage.setItem('auth_token', res.data.token);
             var config = {
-                headers: {'x-access-token': localStorage.getItem('auth_token')}
+                headers: {'Authorization': 'Bearer ' + localStorage.getItem('auth_token')}
             };
             Axios.get('/api/secure', config)
             .then(res => {
