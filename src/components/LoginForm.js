@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import Axios from 'axios';
-import './LoginComponent.scss';
+import './LoginForm.scss';
 
-export default class LoginComponent extends Component {
+export default class LoginForm extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
             username: "",
             password: "",
-            loggedIn: false
+            isAuthenticated: false
         };
     }
 
@@ -18,6 +18,7 @@ export default class LoginComponent extends Component {
         return this.state.username.length > 0 && this.state.password.length > 0;
     }
 
+    // dynamically sets username and password to user's input
     handleChange(event) {
         const { target } = event;
         const { name, value } = target;
@@ -28,14 +29,27 @@ export default class LoginComponent extends Component {
 
     submitForm(event) {
         event.preventDefault();
-        console.log(`Username: ${this.state.username }`);
         Axios.post('/api/login', {
             username: this.state.username,
             password: this.state.password
         })
         .then(res => {
             console.log(res);
-            this.setState({loggedIn: true});
+            this.setState({isAuthenticated: true});
+            this.props.onLogin(this.state.isAuthenticated);
+            
+            // test that user can now access secure url
+            localStorage.setItem('auth_token', res.data.token);
+            var config = {
+                headers: {'Authorization': 'Bearer ' + localStorage.getItem('auth_token')}
+            };
+            Axios.get('/api/secure', config)
+            .then(res => {
+                console.log(res);
+            })
+            .catch(error => {
+                console.log(error);
+            })
         })
         .catch(error => {
             console.log(error);
@@ -43,8 +57,8 @@ export default class LoginComponent extends Component {
     }
 
     render() {
-        const { username, password, loggedIn } = this.state;
-        if (loggedIn) {
+        const { username, password, isAuthenticated } = this.state;
+        if (isAuthenticated) {
             return <div>Success!</div>
         } else {
             return (

@@ -5,6 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^3.8.3",
     "axios": "^0.18.0",
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.3",
     "bootstrap": "^4.2.1",
     "concurrently": "^4.1.0",
