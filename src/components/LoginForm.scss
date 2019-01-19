@@ -1,4 +1,9 @@
 .login-form {
-    width: 10em;
+    width: 80%;
     margin: 0 auto;
+
+    &__submit, &__register {
+        text-align: center;
+        margin-top: .75em;
+    }
 }

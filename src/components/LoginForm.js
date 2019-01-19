@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, Alert } from 'reactstrap';
 import Axios from 'axios';
 import './LoginForm.scss';
 
@@ -10,12 +10,9 @@ export default class LoginForm extends Component {
         this.state = {
             username: "",
             password: "",
-            isAuthenticated: false
+            isAuthenticated: false,
+            showErrorMessage: false
         };
-    }
-
-    validateForm() {
-        return this.state.username.length > 0 && this.state.password.length > 0;
     }
 
     // dynamically sets username and password to user's input
@@ -28,7 +25,7 @@ export default class LoginForm extends Component {
     }
 
     submitForm(event) {
-        event.preventDefault();
+        event.preventDefault()
         Axios.post('/api/login', {
             username: this.state.username,
             password: this.state.password
@@ -37,7 +34,7 @@ export default class LoginForm extends Component {
             console.log(res);
             this.setState({isAuthenticated: true});
             this.props.onLogin(this.state.isAuthenticated);
-            
+                
             // test that user can now access secure url
             localStorage.setItem('auth_token', res.data.token);
             var config = {
@@ -47,22 +44,26 @@ export default class LoginForm extends Component {
             .then(res => {
                 console.log(res);
             })
-            .catch(error => {
+            .catch(error => {  
                 console.log(error);
             })
         })
         .catch(error => {
             console.log(error);
+            this.setState({showErrorMessage: true})
         })
-    }
+    } 
 
     render() {
-        const { username, password, isAuthenticated } = this.state;
-        if (isAuthenticated) {
-            return <div>Success!</div>
-        } else {
-            return (
+        const { username, password, showErrorMessage } = this.state;
+        return (
+            <div className="login-container">
                 <Form className="login-form" onSubmit={ (e) => this.submitForm(e) }>
+                    { showErrorMessage && 
+                        <Alert color="warning">
+                            Invalid username or password. If you do not have an account, register below. 
+                        </Alert>
+                    }
                     <FormGroup>
                         <Label for="username">Username</Label>
                         <Input 
@@ -89,9 +90,15 @@ export default class LoginForm extends Component {
                             }}
                         />
                     </FormGroup>
-                    <Button>Login</Button>
+                    <div className="login-form__submit">
+                        <Button color="primary">Login</Button>
+                    </div>
                 </Form>
-            );
-        }
+
+                <div className="login-form__register">
+                <Button color="link">Register</Button>
+                </div>
+            </div> 
+        );
     }
 }
