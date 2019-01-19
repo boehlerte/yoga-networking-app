@@ -39,12 +39,18 @@ export class NavComponent extends Component {
         });
     }
 
-    onLogout() {
-        this.setState({
-            isLoggedIn: false,
-            showModal: false
-        });
-        localStorage.removeItem('auth_token');
+    onLogout(isConfirm) {
+        if (isConfirm) {
+            this.setState({
+                isLoggedIn: false,
+                showModal: false
+            });
+            localStorage.removeItem('auth_token');
+        } else {
+            this.setState({
+                showModal: false
+            })
+        } 
     }
 
     render() {
