@@ -21,18 +21,18 @@ router.get('/members', (req,res) => {
 router.post('/login', (req,res) => {
     const postData = req.body;
     if (!postData.username || !postData.password) {
-        return res.status(500).json({error: 'No username or password.'})
+        return res.status(401).json({error: 'No username or password.'})
     } 
     // check db to see if username exists
     var userIndex = db.users.findIndex(user => user.username === postData.username);
     if (userIndex === -1) {
         // username not registered
-        return res.status(500).json({error: 'Username: ' + postData.username + ' is not registered'})
+        return res.status(401).json({error: postData.username + ' is not a registered username'})
     } else {
         // username is registered, compare with hashed password in db
         if (!bcrypt.compareSync(postData.password, db.users[userIndex].password)) {
             // passwords don't match, unsuccessful login
-            return res.status(500).json({error: 'Wrong password'});
+            return res.status(401).json({error: 'Wrong password'});
         }
     }
     

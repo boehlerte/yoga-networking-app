@@ -11,6 +11,7 @@ export class NavComponent extends Component {
         this.toggleNavbar = this.toggleNavbar.bind(this);
         this.toggleLoginModal = this.toggleLoginModal.bind(this);
         this.onLogin = this.onLogin.bind(this);
+        this.onLogout = this.onLogout.bind(this);
 
         this.state = {
             collapsed: true,
@@ -38,6 +39,20 @@ export class NavComponent extends Component {
         });
     }
 
+    onLogout(isConfirm) {
+        if (isConfirm) {
+            this.setState({
+                isLoggedIn: false,
+                showModal: false
+            });
+            localStorage.removeItem('auth_token');
+        } else {
+            this.setState({
+                showModal: false
+            })
+        } 
+    }
+
     render() {
         var loginLogoutText = 'Login';
         if (this.state.isLoggedIn) {
@@ -55,10 +70,17 @@ export class NavComponent extends Component {
                     <Nav navbar>
                     <NavItem>
                         <NavLink href="#" onClick={this.toggleLoginModal}>{loginLogoutText}</NavLink>
-                        <Modal isOpen={this.state.showModal} toggle={this.toggleLoginModal}>
-                            <ModalHeader toggle={this.toggleLoginModal}>Logout</ModalHeader>
+                        <Modal isOpen={this.state.showModal} toggle={this.toggleLoginModal} centered={true}>
+                            <ModalHeader toggle={this.toggleLoginModal}>{loginLogoutText}</ModalHeader>
                             <ModalBody>
-                                {this.state.showModal && <LoginControl isLoggedIn={this.state.isLoggedIn} onLogin={this.onLogin}/>}
+                                {
+                                    this.state.showModal && 
+                                    <LoginControl 
+                                        isLoggedIn={this.state.isLoggedIn} 
+                                        onLogin={this.onLogin}
+                                        onLogout={this.onLogout}
+                                    />
+                                }
                             </ModalBody>
                         </Modal>
                     </NavItem>
