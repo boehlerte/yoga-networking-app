@@ -14,7 +14,7 @@ export default class LoginControl extends Component {
     }
 
     handleLogout() {
-       // TODO: handle logout of user
+       this.props.onLogout();
     }
 
     render() {
@@ -24,7 +24,7 @@ export default class LoginControl extends Component {
                     <div>Are you sure you want to logout?</div>
                     <div style={{textAlign: 'center', marginTop: '1em'}}>
                         <Button color="secondary" style={{marginRight: '1em'}}>Cancel</Button>
-                        <Button color="primary">Logout</Button>
+                        <Button color="primary" onClick={this.handleLogout}>Logout</Button>
                     </div>
                 </div>
             );
