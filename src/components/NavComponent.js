@@ -16,7 +16,7 @@ export class NavComponent extends Component {
         this.state = {
             collapsed: true,
             showModal: false,
-            isLoggedIn: false
+            isLoggedIn: this.props.isLoggedIn
         }
     }
 
@@ -37,6 +37,9 @@ export class NavComponent extends Component {
             isLoggedIn: isSuccess,
             showModal: !isSuccess
         });
+        if (isSuccess) {
+            this.props.onLogin();
+        }
     }
 
     onLogout(isConfirm) {
@@ -46,6 +49,7 @@ export class NavComponent extends Component {
                 showModal: false
             });
             localStorage.removeItem('auth_token');
+            this.props.onLogout();
         } else {
             this.setState({
                 showModal: false
@@ -54,8 +58,9 @@ export class NavComponent extends Component {
     }
 
     render() {
+        const { isLoggedIn, collapsed } = this.state;
         var loginLogoutText = 'Login';
-        if (this.state.isLoggedIn) {
+        if (isLoggedIn) {
             loginLogoutText = 'Logout';
         } 
         return (
@@ -66,7 +71,7 @@ export class NavComponent extends Component {
                     <span className="logo__brand"></span>
                 </NavbarBrand>
                 <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
-                <Collapse isOpen={!this.state.collapsed} navbar>
+                <Collapse isOpen={!collapsed} navbar>
                     <Nav navbar>
                     <NavItem>
                         <NavLink href="#" onClick={this.toggleLoginModal}>{loginLogoutText}</NavLink>
@@ -76,7 +81,7 @@ export class NavComponent extends Component {
                                 {
                                     this.state.showModal && 
                                     <LoginControl 
-                                        isLoggedIn={this.state.isLoggedIn} 
+                                        isLoggedIn={isLoggedIn} 
                                         onLogin={this.onLogin}
                                         onLogout={this.onLogout}
                                     />
@@ -85,7 +90,7 @@ export class NavComponent extends Component {
                         </Modal>
                     </NavItem>
                     <NavItem>
-                        <NavLink href="#">My Profile</NavLink>
+                        {isLoggedIn && <NavLink href="#/profile">My Profile</NavLink>}
                     </NavItem>
                     </Nav>
                 </Collapse>
