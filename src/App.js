@@ -13,24 +13,30 @@ class App extends Component {
     this.onLogout = this.onLogout.bind(this);
 
     this.state = {
-      isLoggedIn: localStorage.getItem('auth_token') != null ? true : false
+      isLoggedIn: localStorage.getItem('user') != null ? true : false,
+      user: JSON.parse(localStorage.getItem('user'))
     }
   }
   
-  onLogin() {
-    this.setState({ isLoggedIn: true });
+  onLogin(user) {
+    this.setState({ isLoggedIn: true, user: user });
   }
 
   onLogout() {
-    this.setState({ isLoggedIn: false });
+    this.setState({ isLoggedIn: false, user: null });
   }
 
   render() {
-    const { isLoggedIn } = this.state;
+    const { isLoggedIn, user } = this.state;
       return (
         <div className="App">
           <nav className="App-navigation">
-            <NavComponent onLogin={this.onLogin} onLogout={this.onLogout} isLoggedIn={this.state.isLoggedIn}/>
+            <NavComponent 
+              onLogin={this.onLogin} 
+              onLogout={this.onLogout} 
+              isLoggedIn={isLoggedIn}
+              user={user}
+            />
           </nav>
           <HashRouter>
             <Switch>
@@ -39,7 +45,7 @@ class App extends Component {
                 render={(props) => <HomePage {...props} isLoggedIn={isLoggedIn}/>} 
               />
               <Route 
-                path="/profile" 
+                path="/profile/:username" 
                 render={(props) => <ProfilePage {...props} isLoggedIn={isLoggedIn} />}
               />
             </Switch>

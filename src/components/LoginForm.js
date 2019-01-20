@@ -33,12 +33,20 @@ export default class LoginForm extends Component {
         .then(res => {
             console.log(res);
             this.setState({isAuthenticated: true});
-            this.props.onLogin(this.state.isAuthenticated);
                 
             // test that user can now access secure url
-            localStorage.setItem('auth_token', res.data.token);
+            const user = {
+                auth_token: res.data.token,
+                refresh_token: res.data.refresh_token,
+                username: this.state.username
+            }
+            localStorage.setItem('user', JSON.stringify(user));
+
+            this.props.onLogin(this.state.isAuthenticated, user);
+
+            const auth_token = JSON.parse(localStorage.getItem('user')).auth_token;
             var config = {
-                headers: {'Authorization': 'Bearer ' + localStorage.getItem('auth_token')}
+                headers: {'Authorization': 'Bearer ' + auth_token}
             };
             Axios.get('/api/secure', config)
             .then(res => {

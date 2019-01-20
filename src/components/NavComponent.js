@@ -16,7 +16,8 @@ export class NavComponent extends Component {
         this.state = {
             collapsed: true,
             showModal: false,
-            isLoggedIn: this.props.isLoggedIn
+            isLoggedIn: this.props.isLoggedIn,
+            user: this.props.user
         }
     }
 
@@ -32,13 +33,14 @@ export class NavComponent extends Component {
         });
     }
 
-    onLogin(isSuccess) {
+    onLogin(isSuccess, user) {
         this.setState({ 
             isLoggedIn: isSuccess,
-            showModal: !isSuccess
+            showModal: !isSuccess,
+            user: user
         });
         if (isSuccess) {
-            this.props.onLogin();
+            this.props.onLogin(user);
         }
     }
 
@@ -46,9 +48,10 @@ export class NavComponent extends Component {
         if (isConfirm) {
             this.setState({
                 isLoggedIn: false,
-                showModal: false
+                showModal: false,
+                user: null
             });
-            localStorage.removeItem('auth_token');
+            localStorage.removeItem('user');
             this.props.onLogout();
         } else {
             this.setState({
@@ -58,7 +61,7 @@ export class NavComponent extends Component {
     }
 
     render() {
-        const { isLoggedIn, collapsed } = this.state;
+        const { isLoggedIn, collapsed, user } = this.state;
         var loginLogoutText = 'Login';
         if (isLoggedIn) {
             loginLogoutText = 'Logout';
@@ -90,7 +93,7 @@ export class NavComponent extends Component {
                         </Modal>
                     </NavItem>
                     <NavItem>
-                        {isLoggedIn && <NavLink href="#/profile">My Profile</NavLink>}
+                        {isLoggedIn && user != null && <NavLink href={"#/profile/"+ user.username}>My Profile</NavLink>}
                     </NavItem>
                     </Nav>
                 </Collapse>
