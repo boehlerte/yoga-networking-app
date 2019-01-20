@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink} from 'reactstrap';
+import { Navbar, NavbarBrand, Nav, NavItem, NavLink} from 'reactstrap';
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 import './NavComponent.scss';
 import LoginControl from './LoginControl';
@@ -8,25 +8,16 @@ export class NavComponent extends Component {
     constructor(props) {
         super(props);
         
-        this.toggleNavbar = this.toggleNavbar.bind(this);
         this.toggleLoginModal = this.toggleLoginModal.bind(this);
         this.onLogin = this.onLogin.bind(this);
         this.onLogout = this.onLogout.bind(this);
 
         this.state = {
-            collapsed: true,
             showModal: false,
             isLoggedIn: this.props.isLoggedIn,
             user: this.props.user
         }
     }
-
-    toggleNavbar() {
-        this.setState({
-            collapsed: !this.state.collapsed
-        });
-    }
-
     toggleLoginModal() {
         this.setState({
             showModal: !this.state.showModal
@@ -61,21 +52,19 @@ export class NavComponent extends Component {
     }
 
     render() {
-        const { isLoggedIn, collapsed, user } = this.state;
+        const { isLoggedIn, user } = this.state;
         var loginLogoutText = 'Login';
         if (isLoggedIn) {
             loginLogoutText = 'Logout';
         } 
         return (
             <div>
-                <Navbar color="faded" light>
-                <NavbarBrand href="/" className="mr-auto">
+                <Navbar color="faded" light expand={true}>
+                <NavbarBrand href="#">
                     <img src={require('../assets/lotus_logo.png')} className="thumbnail-med" alt="lotus flower"/>
                     <span className="logo__brand"></span>
                 </NavbarBrand>
-                <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
-                <Collapse isOpen={!collapsed} navbar>
-                    <Nav navbar>
+                    <Nav className="ml-auto" navbar>
                     <NavItem>
                         <NavLink href="#" onClick={this.toggleLoginModal}>{loginLogoutText}</NavLink>
                         <Modal isOpen={this.state.showModal} toggle={this.toggleLoginModal} centered={true}>
@@ -96,7 +85,6 @@ export class NavComponent extends Component {
                         {isLoggedIn && user != null && <NavLink href={"#/profile/"+ user.username}>My Profile</NavLink>}
                     </NavItem>
                     </Nav>
-                </Collapse>
                 </Navbar>
             </div>
         );

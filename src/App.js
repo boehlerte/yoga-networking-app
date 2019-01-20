@@ -48,6 +48,7 @@ class App extends Component {
                 path="/profile/:username" 
                 render={(props) => <ProfilePage {...props} isLoggedIn={isLoggedIn} />}
               />
+              <Route component={HomePage}/>
             </Switch>
           </HashRouter>
         </div>
