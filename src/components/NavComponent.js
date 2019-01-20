@@ -68,17 +68,17 @@ export class NavComponent extends Component {
                     <NavItem>
                         <NavLink href="#" onClick={this.toggleLoginModal}>{loginLogoutText}</NavLink>
                         <Modal isOpen={this.state.showModal} toggle={this.toggleLoginModal} centered={true}>
-                            <ModalHeader toggle={this.toggleLoginModal}>{loginLogoutText}</ModalHeader>
-                            <ModalBody>
-                                {
-                                    this.state.showModal && 
+                            {this.state.showModal && 
+                            <div>
+                                <ModalHeader toggle={this.toggleLoginModal}>{loginLogoutText}</ModalHeader>
+                                <ModalBody>
                                     <LoginControl 
                                         isLoggedIn={isLoggedIn} 
                                         onLogin={this.onLogin}
                                         onLogout={this.onLogout}
                                     />
-                                }
-                            </ModalBody>
+                                </ModalBody>
+                            </div>}
                         </Modal>
                     </NavItem>
                     <NavItem>
