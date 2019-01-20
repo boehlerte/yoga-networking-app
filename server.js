@@ -6,7 +6,8 @@ const router = express.Router()
 const config = require('./config')
 const bcrypt = require('bcrypt-nodejs')
 var salt = bcrypt.genSaltSync(10)
-const db = require('./src/api/db.json')
+const loginDb = require('./src/api/db.json')
+const memberDb = require('./src/api/memberData.json');
 const tokenList = {}
 const app = express()
 
@@ -14,7 +15,7 @@ const app = express()
 app.use(cors())
 
 router.get('/members', (req,res) => {
-    res.send(require('./src/api/memberData.json'));
+    res.send(memberDb);
 })
 
 // For local development purposes, all users have password: TestPassword
@@ -24,13 +25,13 @@ router.post('/login', (req,res) => {
         return res.status(401).json({error: 'No username or password.'})
     } 
     // check db to see if username exists
-    var userIndex = db.users.findIndex(user => user.username === postData.username);
+    var userIndex = loginDb.users.findIndex(user => user.username === postData.username);
     if (userIndex === -1) {
         // username not registered
         return res.status(401).json({error: postData.username + ' is not a registered username'})
     } else {
         // username is registered, compare with hashed password in db
-        if (!bcrypt.compareSync(postData.password, db.users[userIndex].password)) {
+        if (!bcrypt.compareSync(postData.password, loginDb.users[userIndex].password)) {
             // passwords don't match, unsuccessful login
             return res.status(401).json({error: 'Wrong password'});
         }
@@ -49,7 +50,7 @@ router.post('/login', (req,res) => {
     const response = {
         "status": "Logged in",
         "token": token,
-         "refreshToken": refreshToken,
+        "refreshToken": refreshToken,
     }
     tokenList[refreshToken] = response
     res.status(200).json(response);
@@ -64,10 +65,15 @@ router.get('/secure', (req,res) => {
     res.send('I am secured...')
 })
 
-router.get('/profile/:username', (req, res) => {
+router.get('/user/:username', (req, res) => {
     var username = req.params.username;
-    if (db.users.findIndex(user => user.username === username) !== -1) {
+    var userIndex = loginDb.users.findIndex(user => user.username === username);
+    if (userIndex != -1) {
         console.log('user found');
+        const memberDbIndex = memberDb.members.findIndex(member => member.username === username);
+        res.send(JSON.stringify(memberDb.members[memberDbIndex]));
+    } else {
+        res.send(401).json({error: 'no profile associated with that username'});
     }
 })
 

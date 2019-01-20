@@ -10,8 +10,8 @@ export default class LoginControl extends Component {
         this.handleCancel = this.handleCancel.bind(this);
     }
 
-    handleLogin(isSuccess) {
-        this.props.onLogin(isSuccess);
+    handleLogin(isSuccess, user) {
+        this.props.onLogin(isSuccess, user);
     }
 
     handleCancel() {

@@ -1,0 +1,51 @@
+.profile {
+    background-color: #282c34;
+    color: white;
+    padding: 5em;
+    min-height: 100vh;
+
+    &__content {
+        max-width: 650px;
+        margin: 0 auto;
+        padding: 0 1em;
+    }
+
+    &__avatar {
+        border: 1px solid white;
+        border-radius: .5em;
+        max-width: 15em;
+        margin: 0 auto;
+
+        &-img {
+            padding: .5em;
+            object-fit: scale-down;
+            max-width: 15em;
+            border-radius: 1em;
+        }
+    }
+
+    &__intro {
+        padding: 2em 0 1em;
+        border-bottom: 1px solid rgb(75, 76, 78);
+
+        &-username {
+            font-weight: 500;
+            letter-spacing: .1em;
+        }
+
+        &-mantra {
+            margin-top: .5em;
+            font-weight: 300;
+            font-style: italic;
+        }
+    }
+
+    &__fullBio {
+        padding-top: 2em;
+
+        &-bio {
+            margin-top: 2em;
+            font-weight: 300;
+        }
+    }
+}
